@@ -1,0 +1,35 @@
+<% if !flash[:notice].blank? %>
+   <div class = "alert alert-info">
+      <%= flash[:notice] %>
+   </div>
+<% end %>
+
+<br />
+
+<%= link_to "Upload Documents", new_document_path, class: "btn btn-lg btn-info" %>
+<br />
+<br />
+
+<table class = "table table-bordered table-striped">
+   <thead>
+      <tr>
+         <th>Name</th>
+         <th>Download Link</th>
+         <th> Delete</th>
+      </tr>
+   </thead>
+
+   <tbody>
+      <% @documents.each do |document| %>
+
+         <tr>
+            <td><%= document.name %></td>
+           <td><%= link_to "Download", document.attachment_url %></td>
+            <td><%= button_to "Delete",  document, method: :delete, class: 'btn btn-sm btn-warning', confirm: "Are you sure to delete document?" %></td>
+         </tr>
+         </tr>
+
+      <% end %>
+   </tbody>
+
+</table>
